@@ -1,5 +1,5 @@
 // use wgpu::Limits;
-use winit::window::WindowAttributes;
+use winit::{monitor::Fullscreen, window::WindowAttributes};
 
 mod app;
 
@@ -9,7 +9,8 @@ fn main() {
     //     ..Limits::downlevel_defaults()
     // };
 
-    let window_options = WindowAttributes::default().with_decorations(false);
+    let window_options = WindowAttributes::default().with_decorations(false)
+        .with_fullscreen(Some(Fullscreen::Borderless(None)));
 
     dioxus_native::launch_cfg(app::app, vec![], vec![Box::new(window_options)]);
     // dioxus_native::launch(app::app)
