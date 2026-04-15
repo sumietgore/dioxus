@@ -4,4 +4,5 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-dioxus-native = {version="0.7.4", features = ["prelude"]}
+dioxus-native = { path = "../blitz/packages/dioxus-native", default-features = false, features = ["prelude", "alt-renderer", "vello", "accessibility", "hot-reload", "net", "html", "svg", "system-fonts", "clipboard", "file_dialog", "incremental" ] }
+wgpu = "28"

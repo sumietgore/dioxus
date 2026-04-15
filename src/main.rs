@@ -1,111 +1,13 @@
-use dioxus_native::prelude::*;
+use wgpu::Limits;
 
+mod app;
 
 fn main() {
-    dioxus_native::launch(app)
-}
+    let limits = wgpu::Limits {
+        max_storage_buffers_per_shader_stage: 8,
+        ..Limits::downlevel_defaults()
+    };
 
-pub fn app() -> Element {
-    let mut count = use_signal(|| 0);
-
-    rsx! {
-        div { class: "container",
-            style { {CSS} }
-            h1 { class: "header", "Count: {count}" }
-            div { class: "buttons",
-                button {
-                    class: "counter-button btn-green",
-                    onclick: move |_| { count += 1 },
-                    "Increment"
-                }
-                button {
-                    class: "counter-button btn-red",
-                    onclick: move |_| { count -= 1 },
-                    "Decrement"
-                }
-            }
-            button {
-                class: "counter-button btn-blue",
-                onclick: move |_| { count.set(0) },
-                "Reset"
-            }
-        }
-    }
+    dioxus_native::launch_cfg(app::app, vec![], vec![Box::new(limits)]);
+    // dioxus_native::launch(app::app)
 }
-
-const CSS: &str = r#"
-
-html, body, #main {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-}
-
-.header {
-    padding: 20px;
-    line-height: 1;
-    font-family: sans-serif;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100vw;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.counter-button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    line-height: 1;
-    font-family: sans-serif;
-    border-width: 2px;
-    border-style: solid;
-}
-.counter-button:focus {
-    outline: 4px solid black;
-}
-
-.btn-green {
-    background-color: green;
-    border-color: green;
-    color: white;
-}
-.btn-green:hover {
-    color: green;
-    background-color: white;
-}
-
-.btn-red {
-    background-color: red;
-    border-color: red;
-    color: white;
-}
-.btn-red:hover {
-    color: red;
-    background-color: white;
-}
-
-.btn-blue {
-    background-color: blue;
-    border-color: blue;
-    color: white;
-}
-.btn-blue:hover {
-    color: blue;
-    background-color: white;
-}
-"#;
