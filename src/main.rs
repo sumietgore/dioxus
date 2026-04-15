@@ -1,4 +1,5 @@
 // use wgpu::Limits;
+use winit::window::WindowAttributes;
 
 mod app;
 
@@ -8,6 +9,8 @@ fn main() {
     //     ..Limits::downlevel_defaults()
     // };
 
-    dioxus_native::launch_cfg(app::app, vec![], vec![]);
+    let window_options = WindowAttributes::default().with_decorations(false);
+
+    dioxus_native::launch_cfg(app::app, vec![], vec![Box::new(window_options)]);
     // dioxus_native::launch(app::app)
 }

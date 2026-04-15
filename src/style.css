@@ -39,7 +39,10 @@ body {
     cursor: pointer;
     text-decoration: none;
     outline: none;
-    transition: background-color 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+    transition:
+        background-color 0.2s ease,
+        opacity 0.2s ease,
+        box-shadow 0.2s ease;
     -webkit-user-select: none;
     user-select: none;
 }

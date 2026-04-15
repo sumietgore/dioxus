@@ -1,5 +1,6 @@
 use dioxus_native::prelude::*;
 
+const IMAGE: Asset = asset!("./image.png");
 
 #[derive(Clone, Copy)]
 pub struct CounterData {
@@ -27,7 +28,8 @@ pub fn app() -> Element {
     rsx! (
         style { {CSS} }
 
-        div{ style: "display: flex; flex-direction: column; gap: 12px;",
+        div{ style: "display: flex; flex-direction: column; gap: 12px; justify-content: center; align-items: center;",
+            img { src: IMAGE, style: "width: 300px; height: auto;" }
 
             CounterComponent{}
             CounterComponent{}
