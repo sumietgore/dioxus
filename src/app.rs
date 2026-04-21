@@ -28,24 +28,24 @@ pub fn app() -> Element {
     rsx! (
         style { {CSS} }
 
-        div{ style: "display: flex; flex-direction: column; gap: 12px; justify-content: center; align-items: center;",
-            img { src: IMAGE, style: "width: 300px; height: auto;" }
-
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
+        div { class: "product-grid",
+            ProductComponent {}
+            ProductComponent {}
+            ProductComponent {}
+            ProductComponent {}
+            ProductComponent {}
+            ProductComponent {}
         }
     )
+}
+
+#[component]
+fn ProductComponent() -> Element {
+    rsx! {
+        div{ style: "display: flex; flex-direction: column; gap: 12px; justify-content: center; align-items: center; border: 1px solid ",
+            img { src: IMAGE, style: "width: 300px; height: auto;" }
+        }
+    }
 }
 
 

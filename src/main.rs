@@ -9,8 +9,7 @@ fn main() {
     //     ..Limits::downlevel_defaults()
     // };
 
-    let window_options = WindowAttributes::default().with_decorations(false)
-        .with_fullscreen(Some(Fullscreen::Borderless(None)));
+    let window_options = WindowAttributes::default();
 
     dioxus_native::launch_cfg(app::app, vec![], vec![Box::new(window_options)]);
     // dioxus_native::launch(app::app)
