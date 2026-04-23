@@ -28,22 +28,29 @@ pub fn app() -> Element {
     rsx! (
         style { {CSS} }
 
-        div{ style: "display: flex; flex-direction: column; gap: 12px; justify-content: center; align-items: center;",
-            img { src: IMAGE, style: "width: 300px; height: auto;" }
+        div{ class:"grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center items-center px-8 py-8",
+            ProductCard{}
+            ProductCard{}
+            ProductCard{}
+            ProductCard{}
+            ProductCard{}
+            ProductCard{}
+            ProductCard{}
+            ProductCard{}
+            ProductCard{}
+            ProductCard{}
+        }
+    )
+}
 
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
-            CounterComponent{}
+#[component]
+fn ProductCard() -> Element {
+    rsx! (
+        div{ class: "bg-gray-50 hover:shadow-gray-100 shadow-md border-1 border-gray-200 rounded-lg p-8",
+            div{ class: "flex flex-col gap-8 items-center",
+                img {  src: {IMAGE} }
+                p { class: "font-bold text-md text-center", "Coca Cola Zero"}
+            }
         }
     )
 }
@@ -52,19 +59,20 @@ pub fn app() -> Element {
 #[component]
 fn CounterComponent() -> Element {
     let mut counter_context = use_context::<CounterData>();
+
     rsx! (
-        div { style: "display: flex; flex-direction: column; gap: 8px; margin: 8px;",
-            h1 { class: "header", "Count: {counter_context.count}" },
-            div{ style: "display: flex; flex-direction: row; gap: 8px;",
-                button { class: "button",
+        div { class: "flex flex-col gap-8",
+            h1 { class: "text-2xl font-bold select-none", "Count: {counter_context.count}" },
+            div{ style: "flex flex-row gap-4",
+                button { class: "inline-flex shrink-0 items-center justify-center text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/90 gap-1.5 px-3 has-[>svg]:px-2.5 h-[31px] rounded-lg",
                     onclick: move |_| { counter_context.increment() },
                     "Increment",
                 },
-                button { class: "button",
+                button { class: "inline-flex shrink-0 items-center justify-center text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/90 gap-1.5 px-3 has-[>svg]:px-2.5 h-[31px] rounded-lg",
                     onclick: move |_| { counter_context.reset() },
                     "Reset",
                 },
-                button { class: "button",
+                button { class: "inline-flex shrink-0 items-center justify-center text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 bg-primary text-primary-foreground hover:bg-primary/90 gap-1.5 px-3 has-[>svg]:px-2.5 h-[31px] rounded-lg",
                     onclick: move |_| { counter_context.decrement() },
                     "Decrement",
                 },
@@ -76,4 +84,4 @@ fn CounterComponent() -> Element {
 }
 
 
-const CSS: &str = include_str!("./style.css");
+const CSS: &str = include_str!("../assets/tailwind.css");

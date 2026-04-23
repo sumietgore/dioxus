@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@source "./src/**/*.{rs,html,css}";
+
 html,
 body,
 pre {
